@@ -97,6 +97,8 @@ export const PrecisionSliderSection: React.FC = () => {
             <img
               src="/images/before-after/finished-kitchen.jpg"
               alt="Dapur Mewah Dark Charcoal & Calacatta Marble Terpasang Selesai"
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               draggable={false}
             />
@@ -111,6 +113,8 @@ export const PrecisionSliderSection: React.FC = () => {
               <img
                 src="/images/before-after/raw-site.jpg"
                 alt="Kondisi Lapangan Mentah Sebelum Fabrikasi"
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                 draggable={false}
               />

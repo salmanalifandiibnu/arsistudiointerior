@@ -126,9 +126,13 @@ export const HeroScrollytelling: React.FC<HeroScrollytellingProps> = ({
       drawFrame(1);
     };
 
-    // 2. Load remaining frames in batches of 15
+    // 2. Load remaining frames in streaming batches
+    let hasStartedRemaining = false;
     const loadRemainingFrames = async () => {
-      const BATCH_SIZE = 15;
+      if (hasStartedRemaining || isCancelled) return;
+      hasStartedRemaining = true;
+
+      const BATCH_SIZE = 10;
       for (let i = 2; i <= TOTAL_FRAMES; i += BATCH_SIZE) {
         if (isCancelled) break;
         const batchPromises: Promise<void>[] = [];
@@ -149,16 +153,39 @@ export const HeroScrollytelling: React.FC<HeroScrollytellingProps> = ({
         }
 
         await Promise.all(batchPromises);
-        // Small breathing gap between batches to keep mobile network thread responsive
-        await new Promise((res) => setTimeout(res, 20));
+        // Breathing gap between batches to keep network thread responsive
+        await new Promise((res) => setTimeout(res, 35));
       }
     };
 
-    // Start background loading after frame 1 is initialized
-    loadRemainingFrames();
+    // Defer loading remaining frames until page is idle or user starts interacting
+    const onUserInteract = () => {
+      loadRemainingFrames();
+      window.removeEventListener('scroll', onUserInteract);
+      window.removeEventListener('touchstart', onUserInteract);
+    };
+    window.addEventListener('scroll', onUserInteract, { passive: true, once: true });
+    window.addEventListener('touchstart', onUserInteract, { passive: true, once: true });
+
+    // Fallback: start loading when idle
+    let idleTimer: any = null;
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      idleTimer = (window as any).requestIdleCallback(() => loadRemainingFrames(), { timeout: 1200 });
+    } else {
+      idleTimer = setTimeout(loadRemainingFrames, 800);
+    }
 
     return () => {
       isCancelled = true;
+      window.removeEventListener('scroll', onUserInteract);
+      window.removeEventListener('touchstart', onUserInteract);
+      if (idleTimer) {
+        if ('cancelIdleCallback' in window) {
+          (window as any).cancelIdleCallback(idleTimer);
+        } else {
+          clearTimeout(idleTimer);
+        }
+      }
     };
   }, [drawFrame]);
 

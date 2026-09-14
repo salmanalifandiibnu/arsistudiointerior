@@ -32,6 +32,8 @@ export const MaterialsEducationSection: React.FC = () => {
                     <img
                       src={mat.image}
                       alt={mat.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     />
                   </div>

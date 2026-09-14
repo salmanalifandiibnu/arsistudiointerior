@@ -142,10 +142,12 @@ export const PortfolioSection: React.FC = () => {
                 onClick={() => handleOpenProject(index)}
                 className={`${bentoSpan} relative rounded-sm overflow-hidden bg-studio-900 cursor-pointer group transition-all duration-500`}
               >
-                {/* Full-Bleed Image */}
+                {/* Full-Bleed Image (Native Lazy Load & Async Decode) */}
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
