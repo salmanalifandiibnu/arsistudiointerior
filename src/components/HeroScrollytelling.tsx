@@ -113,79 +113,68 @@ export const HeroScrollytelling: React.FC<HeroScrollytellingProps> = ({
     };
   }, [drawFrame]);
 
-  // Progressive concurrent batch preloader
+  // Two-Tier Intelligent Frame Loader:
+  // Tier 1: Immediately loads keyframes (every 5th frame) across the whole 300-frame timeline
+  //         so scrolling from 0% to 100% is INSTANTLY animated and NEVER stuck.
+  // Tier 2: Fills in all remaining in-between frames for buttery 60fps density.
   useEffect(() => {
     let isCancelled = false;
 
-    // 1. Instant load Frame 1
-    const img1 = new Image();
-    img1.src = getFrameUrl(1);
-    img1.onload = () => {
-      if (isCancelled) return;
-      imagesRef.current.set(1, img1);
-      drawFrame(1);
+    // Helper to load a single frame
+    const loadFrame = (index: number): Promise<void> => {
+      if (imagesRef.current.has(index)) return Promise.resolve();
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.src = getFrameUrl(index);
+        img.onload = () => {
+          if (!isCancelled) {
+            imagesRef.current.set(index, img);
+            if (index === 1) drawFrame(1);
+          }
+          resolve();
+        };
+        img.onerror = () => resolve();
+      });
     };
 
-    // 2. Load remaining frames in streaming batches
-    let hasStartedRemaining = false;
-    const loadRemainingFrames = async () => {
-      if (hasStartedRemaining || isCancelled) return;
-      hasStartedRemaining = true;
+    const loadAllFrames = async () => {
+      // 1. Instant load Frame 1
+      await loadFrame(1);
+      if (isCancelled) return;
 
-      const BATCH_SIZE = 10;
-      for (let i = 2; i <= TOTAL_FRAMES; i += BATCH_SIZE) {
-        if (isCancelled) break;
-        const batchPromises: Promise<void>[] = [];
+      // 2. TIER 1: Rapidly load anchor keyframes (every 5th frame) from 5 to 300
+      // 60 keyframes total across the full timeline.
+      const keyframes: number[] = [];
+      for (let i = 5; i <= TOTAL_FRAMES; i += 5) {
+        keyframes.push(i);
+      }
 
-        for (let j = i; j < i + BATCH_SIZE && j <= TOTAL_FRAMES; j++) {
-          const promise = new Promise<void>((resolve) => {
-            const img = new Image();
-            img.src = getFrameUrl(j);
-            img.onload = () => {
-              if (!isCancelled) {
-                imagesRef.current.set(j, img);
-              }
-              resolve();
-            };
-            img.onerror = () => resolve();
-          });
-          batchPromises.push(promise);
-        }
+      const KEYFRAME_CHUNK = 8;
+      for (let i = 0; i < keyframes.length; i += KEYFRAME_CHUNK) {
+        if (isCancelled) return;
+        const chunk = keyframes.slice(i, i + KEYFRAME_CHUNK);
+        await Promise.all(chunk.map((idx) => loadFrame(idx)));
+      }
 
-        await Promise.all(batchPromises);
-        // Breathing gap between batches to keep network thread responsive
-        await new Promise((res) => setTimeout(res, 35));
+      // 3. TIER 2: Fill in all remaining in-between frames
+      const remaining: number[] = [];
+      for (let i = 2; i <= TOTAL_FRAMES; i++) {
+        if (i % 5 !== 0) remaining.push(i);
+      }
+
+      const REMAINING_CHUNK = 8;
+      for (let i = 0; i < remaining.length; i += REMAINING_CHUNK) {
+        if (isCancelled) return;
+        const chunk = remaining.slice(i, i + REMAINING_CHUNK);
+        await Promise.all(chunk.map((idx) => loadFrame(idx)));
+        await new Promise((res) => setTimeout(res, 20));
       }
     };
 
-    // Defer loading remaining frames until page is idle or user starts interacting
-    const onUserInteract = () => {
-      loadRemainingFrames();
-      window.removeEventListener('scroll', onUserInteract);
-      window.removeEventListener('touchstart', onUserInteract);
-    };
-    window.addEventListener('scroll', onUserInteract, { passive: true, once: true });
-    window.addEventListener('touchstart', onUserInteract, { passive: true, once: true });
-
-    // Fallback: start loading when idle
-    let idleTimer: any = null;
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      idleTimer = (window as any).requestIdleCallback(() => loadRemainingFrames(), { timeout: 1200 });
-    } else {
-      idleTimer = setTimeout(loadRemainingFrames, 800);
-    }
+    loadAllFrames();
 
     return () => {
       isCancelled = true;
-      window.removeEventListener('scroll', onUserInteract);
-      window.removeEventListener('touchstart', onUserInteract);
-      if (idleTimer) {
-        if ('cancelIdleCallback' in window) {
-          (window as any).cancelIdleCallback(idleTimer);
-        } else {
-          clearTimeout(idleTimer);
-        }
-      }
     };
   }, [drawFrame]);
 
