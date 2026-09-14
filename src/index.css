@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #FFFBFC;
+    color: #0C1D32;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bahnschrift', 'DIN Alternate', 'Barlow Semi Condensed', 'DIN 1451', sans-serif;
+  }
+}
+
+/* Minimal Architectural Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F0F4F8;
+}
+::-webkit-scrollbar-thumb {
+  background: #BACAD6;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #007AAD;
+}
+
+/* Glassmorphism subtle navigation */
+.glass-panel {
+  background: rgba(255, 251, 252, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(217, 226, 233, 0.85);
+}
+
+/* Architectural Portfolio Switch Animation */
+@keyframes portfolioReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-portfolio-reveal {
+  animation: portfolioReveal 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
