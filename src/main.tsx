@@ -7,6 +7,13 @@ import { initUTMTracking } from './utils/tracking';
 // Initialize UTM & Campaign parameter capture immediately on load
 initUTMTracking();
 
+// Register Service Worker in production for instant repeat visits & caching
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />

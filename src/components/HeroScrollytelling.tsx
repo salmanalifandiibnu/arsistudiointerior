@@ -296,14 +296,16 @@ export const HeroScrollytelling: React.FC<HeroScrollytellingProps> = ({
           </div>
         </div>
 
-        {/* Bottom Scroll Indicator */}
-        <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-12 sm:right-12 z-20 flex items-center justify-between pointer-events-none border-t border-studio-800/60 pt-3">
-          
+        {/* Bottom Scroll Indicator (Active in Phase 1, smoothly fades on scroll) */}
+        <div
+          className={`absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-12 sm:right-12 z-20 flex items-center justify-between pointer-events-none border-t border-studio-800/60 pt-3 transition-opacity duration-500 ${
+            activePhase === 1 ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
           <div className="flex items-center gap-2 text-[11px] text-studio-400 font-mono tracking-wider">
             <ChevronDown className="w-3.5 h-3.5 text-accent animate-bounce" />
             <span>Gulir untuk eksplorasi</span>
           </div>
-
         </div>
 
       </div>

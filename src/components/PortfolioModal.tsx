@@ -8,6 +8,7 @@ interface PortfolioModalProps {
   project: PortfolioProject | null;
   currentIndex?: number;
   totalProjects?: number;
+  allProjects?: PortfolioProject[];
   onClose: () => void;
   onPrev?: () => void;
   onNext?: () => void;
@@ -17,10 +18,23 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
   project,
   currentIndex,
   totalProjects,
+  allProjects,
   onClose,
   onPrev,
   onNext,
 }) => {
+  // Smart Adjacent Project Preloader (Next / Prev instant 0ms transition)
+  useEffect(() => {
+    if (currentIndex === undefined || !allProjects || allProjects.length <= 1) return;
+    const nextIdx = (currentIndex + 1) % allProjects.length;
+    const prevIdx = (currentIndex - 1 + allProjects.length) % allProjects.length;
+
+    const nextImg = new Image();
+    nextImg.src = allProjects[nextIdx].image;
+
+    const prevImg = new Image();
+    prevImg.src = allProjects[prevIdx].image;
+  }, [currentIndex, allProjects]);
   // Keyboard Escape, Left, Right listener
   useEffect(() => {
     if (!project) return;

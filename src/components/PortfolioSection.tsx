@@ -184,6 +184,7 @@ export const PortfolioSection: React.FC = () => {
         onClose={handleCloseProject}
         onPrev={handlePrevProject}
         onNext={handleNextProject}
+        allProjects={filteredProjects}
       />
     </section>
   );
