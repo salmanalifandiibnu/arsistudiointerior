@@ -31,10 +31,13 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
   };
 
   useEffect(() => {
+    const video = videoRef.current;
+    const container = containerRef.current;
+
+    // 1. Scroll listener for Navbar activation
     const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      // When scrolled past half of the mobile hero, activate navbar
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
       const isPast = rect.bottom <= window.innerHeight * 0.7;
       if (onScrollyComplete) {
         onScrollyComplete(isPast);
@@ -44,15 +47,43 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Ensure video plays on mobile low-power mode or background tab resume
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Autoplay may be deferred until first user touch
-      });
+    // 2. IntersectionObserver: Auto-pause when scrolled out of view to save mobile battery & GPU
+    let observer: IntersectionObserver | null = null;
+    if (container && video && 'IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(container);
+    } else if (video) {
+      video.play().catch(() => {});
     }
+
+    // 3. Tab Visibility Handler: Pause when app/tab is in background, resume when active
+    const handleVisibilityChange = () => {
+      if (!video) return;
+      if (document.hidden) {
+        video.pause();
+      } else if (container) {
+        const rect = container.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          video.play().catch(() => {});
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (observer) observer.disconnect();
     };
   }, [onScrollyComplete]);
 
@@ -61,16 +92,18 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
       ref={containerRef}
       className="relative w-full h-[100dvh] min-h-[580px] bg-studio-950 overflow-hidden flex flex-col justify-between"
     >
-      {/* Background Looping Video */}
+      {/* Background Looping Video (Dual Format WebM + MP4, Auto-Paused on Scroll) */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         poster="/images/before-after/raw-site.jpg"
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
+        <source src="/videos/hero-mobile.webm" type="video/webm" />
         <source src="/videos/hero-mobile.mp4" type="video/mp4" />
       </video>
 
