@@ -78,8 +78,8 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
       <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-studio-950/80 via-studio-950/40 to-transparent pointer-events-none z-10" />
       <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-studio-950 via-studio-950/75 to-transparent pointer-events-none z-10" />
 
-      {/* Top Header Bar */}
-      <div className="relative z-20 pt-6 px-6 flex items-center justify-start">
+      {/* Top Header Bar (Centered) */}
+      <div className="relative z-20 pt-6 px-6 flex items-center justify-center">
         <img
           src="/images/branding/logo-white-color.png"
           alt="Arsi Studio Interior"
@@ -87,10 +87,10 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
         />
       </div>
 
-      {/* Bottom Content Area */}
-      <div className="relative z-20 px-6 pb-8 flex flex-col gap-5">
+      {/* Bottom Content Area (Centered) */}
+      <div className="relative z-20 px-6 pb-8 flex flex-col gap-5 items-center">
         {/* Architectural Narrative */}
-        <div className="space-y-2 text-left">
+        <div className="space-y-2 text-center max-w-sm mx-auto">
           <h1 className="font-heading text-3xl font-semibold text-studio-50 leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
             Harmoni Rasa di Setiap Sudut.
           </h1>
@@ -100,7 +100,7 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
         </div>
 
         {/* Dual CTA Buttons */}
-        <div className="grid grid-cols-2 gap-3 pt-1">
+        <div className="grid grid-cols-2 gap-3 pt-1 w-full max-w-xs mx-auto">
           <a
             href={waUrl}
             target="_blank"
