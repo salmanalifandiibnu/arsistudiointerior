@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { HeroScrollytelling } from './components/HeroScrollytelling';
+import { HeroMobileVideo } from './components/HeroMobileVideo';
 import { Navbar } from './components/Navbar';
 import { PrecisionSliderSection } from './components/PrecisionSliderSection';
 import { ServicesSection } from './components/ServicesSection';
@@ -15,17 +16,40 @@ import { BackToTop } from './components/BackToTop';
 
 export function App() {
   const [isPastHero, setIsPastHero] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+    const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(e.matches);
+    };
+
+    // Initial check
+    setIsMobile(mediaQuery.matches);
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   return (
     <div className="min-h-screen bg-studio-50 text-studio-900 flex flex-col font-sans selection:bg-studio-900 selection:text-studio-50">
       
-      {/* Dynamic Slide-Down Navbar (Hidden during scrollytelling) */}
+      {/* Dynamic Slide-Down Navbar */}
       <Navbar visible={isPastHero} />
 
-      {/* 300-Frame Canvas Scrollytelling Hero */}
-      <HeroScrollytelling
-        onScrollyComplete={(completed) => setIsPastHero(completed)}
-      />
+      {/* Adaptive Hero Experience:
+          - Mobile (< 768px): Lightweight 100dvh Video Background (Zero sequence frames downloaded)
+          - Desktop / Tablet (>= 768px): Cinematic 300-frame Canvas Scrollytelling */}
+      {isMobile ? (
+        <HeroMobileVideo onScrollyComplete={(completed) => setIsPastHero(completed)} />
+      ) : (
+        <HeroScrollytelling onScrollyComplete={(completed) => setIsPastHero(completed)} />
+      )}
 
       {/* Content Stream (Post-Hero) */}
       <main className="flex-grow">

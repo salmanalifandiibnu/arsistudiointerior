@@ -37,6 +37,9 @@ self.addEventListener('fetch', (event) => {
   // Only handle GET requests
   if (event.request.method !== 'GET') return;
 
+  // Let video range streaming requests pass directly through to network (crucial for iOS Safari / Chrome Range headers)
+  if (url.pathname.startsWith('/videos/')) return;
+
   // 1. Cache-First Strategy for sequence frames, portfolio images, and fonts
   if (
     url.pathname.startsWith('/sequence/') ||
