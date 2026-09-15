@@ -91,8 +91,10 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
       <div className="relative z-20 px-6 pb-8 flex flex-col gap-5 items-center">
         {/* Architectural Narrative */}
         <div className="space-y-2 text-center max-w-sm mx-auto">
-          <h1 className="font-heading text-2xl sm:text-3xl font-semibold text-studio-50 leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
-            Harmoni Rasa<br />di Setiap Sudut.
+          <h1 className="font-heading text-[36px] sm:text-[40px] font-semibold text-studio-50 leading-[1.15] drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
+            <span className="whitespace-nowrap">Harmoni Rasa</span>
+            <br />
+            <span className="whitespace-nowrap">di Setiap Sudut.</span>
           </h1>
           <p className="text-xs text-studio-300 leading-relaxed drop-shadow">
             Sentuhan karya nyata untuk ruang hidup Anda.
