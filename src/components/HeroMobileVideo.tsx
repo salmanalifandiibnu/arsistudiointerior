@@ -92,10 +92,10 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
         {/* Architectural Narrative */}
         <div className="space-y-2 text-left">
           <h1 className="font-heading text-3xl font-semibold text-studio-50 leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
-            Gagasan ruang bermula dari presisi, hadir nyata menjadi kehangatan hunian Anda.
+            Harmoni Rasa di Setiap Sudut.
           </h1>
-          <p className="text-xs text-studio-300 leading-relaxed drop-shadow line-clamp-2">
-            Spesialis custom interior premium berbasis Multipleks Meranti 18mm & PVC Foam Board anti-rayap.
+          <p className="text-xs text-studio-300 leading-relaxed drop-shadow">
+            Sentuhan karya nyata untuk ruang hidup Anda.
           </p>
         </div>
 
