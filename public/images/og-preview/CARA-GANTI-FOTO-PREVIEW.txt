@@ -1,0 +1,19 @@
+﻿================================================================================
+PANDUAN MENGGANTI FOTO LINK PREVIEW (WHATSAPP, TELEGRAM, SOSIAL MEDIA)
+================================================================================
+
+Folder ini khusus untuk menyimpan gambar thumbnail yang muncul saat link website
+(https://arsistudiointerior.id) dibagikan ke WhatsApp, Telegram, Facebook, dsb.
+
+CARA GANTI FOTO:
+1. Siapkan foto/desain baru Anda.
+2. Namai file foto tersebut:
+   👉 og-image.jpg
+3. Masukkan/timpa (replace) file og-image.jpg yang ada di folder ini.
+4. Simpan/push ke GitHub atau build agar Netlify mengupdate gambar barunya.
+
+SPESIFIKASI IDEAL GAMBAR:
+- Dimensi Rekomendasi : 1200 x 630 pixel (Rasio 1.91 : 1 Landscape)
+- Format              : JPG (.jpg)
+- Area Aman           : Taruh teks atau logo di area tengah agar tidak terpotong.
+================================================================================
