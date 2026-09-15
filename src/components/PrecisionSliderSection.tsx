@@ -176,49 +176,6 @@ export const PrecisionSliderSection: React.FC = () => {
           </div>
         </ScrollReveal>
 
-        {/* 3 Key Architectural Highlights from this Transformation */}
-        <ScrollReveal delay={180}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 sm:mt-12">
-            
-            <div className="p-6 rounded-md bg-white border border-studio-200/90 shadow-sm space-y-2">
-              <span className="font-mono text-xs text-accent font-semibold uppercase tracking-wider block">
-                01. Penutupan Jalur Pipa
-              </span>
-              <h4 className="font-heading text-base font-bold text-studio-950">
-                Akurasi Letak Sink & Paralon
-              </h4>
-              <p className="text-xs text-studio-600 font-light leading-relaxed">
-                Lubang pipa air bersih dan drainase yang awalnya terbuka ditutup presisi dengan kabinet bawah berbahan 100% PVC Board kedap air.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-md bg-white border border-studio-200/90 shadow-sm space-y-2">
-              <span className="font-mono text-xs text-accent font-semibold uppercase tracking-wider block">
-                02. Integrasi Kabinet Rapat Plafon
-              </span>
-              <h4 className="font-heading text-base font-bold text-studio-950">
-                Kabinet Full-Height Rata Plafon
-              </h4>
-              <p className="text-xs text-studio-600 font-light leading-relaxed">
-                Modul Charcoal Matte difabrikasi sesuai tinggi elevasi dinding eksisting sehingga tidak menyisakan celah sarang debu di atas lemari.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-md bg-white border border-studio-200/90 shadow-sm space-y-2">
-              <span className="font-mono text-xs text-accent font-semibold uppercase tracking-wider block">
-                03. Kemewahan Calacatta Gold
-              </span>
-              <h4 className="font-heading text-base font-bold text-studio-950">
-                Waterfall Island & Backsplash Utuh
-              </h4>
-              <p className="text-xs text-studio-600 font-light leading-relaxed">
-                Slab marmer Calacatta dengan urat emas jatuh mengalir (*waterfall edge*) mulus pada pulau dapur dipadukan dengan pencahayaan hangat 3000K.
-              </p>
-            </div>
-
-          </div>
-        </ScrollReveal>
-
       </div>
     </section>
   );
