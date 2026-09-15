@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ChevronDown, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { MessageCircle, ArrowUpRight } from 'lucide-react';
 import { STUDIO_INFO } from '../content/studioInfo';
 import { buildWhatsAppUrl, handleLeadConversion } from '../utils/tracking';
 
@@ -79,25 +79,18 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
       <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-studio-950 via-studio-950/75 to-transparent pointer-events-none z-10" />
 
       {/* Top Header Bar */}
-      <div className="relative z-20 pt-6 px-6 flex items-center justify-between">
+      <div className="relative z-20 pt-6 px-6 flex items-center justify-start">
         <img
           src="/images/branding/logo-white-color.png"
           alt="Arsi Studio Interior"
           className="h-8 w-auto object-contain drop-shadow-md"
         />
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-studio-900/60 border border-studio-800/80 backdrop-blur-md text-[10px] font-mono text-studio-300 tracking-wider uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span>Studio Bandung</span>
-        </div>
       </div>
 
       {/* Bottom Content Area */}
       <div className="relative z-20 px-6 pb-8 flex flex-col gap-5">
         {/* Architectural Narrative */}
         <div className="space-y-2 text-left">
-          <p className="text-[11px] font-mono uppercase tracking-widest text-accent font-medium drop-shadow">
-            Kalkir Presisi • Fabrikasi Modul
-          </p>
           <h1 className="font-heading text-3xl font-semibold text-studio-50 leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]">
             Gagasan ruang bermula dari presisi, hadir nyata menjadi kehangatan hunian Anda.
           </h1>
@@ -127,19 +120,6 @@ export const HeroMobileVideo: React.FC<HeroMobileVideoProps> = ({
             <span>Portofolio</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-accent" />
           </a>
-        </div>
-
-        {/* Subtle Bottom Scroll Cue */}
-        <div className="pt-2 border-t border-studio-800/60 flex items-center justify-between">
-          <a
-            href="#portofolio"
-            onClick={handleExploreClick}
-            className="flex items-center gap-2 text-[11px] text-studio-400 font-mono tracking-wider active:text-accent transition-colors"
-          >
-            <ChevronDown className="w-3.5 h-3.5 text-accent animate-bounce" />
-            <span>Gulir untuk eksplorasi</span>
-          </a>
-          <span className="text-[10px] font-mono text-studio-500">100% Anti-MDF</span>
         </div>
       </div>
     </div>
