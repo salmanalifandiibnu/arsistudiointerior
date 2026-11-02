@@ -21,6 +21,8 @@ export const BrandPartnersSection: React.FC = () => {
                   <img
                     src={brand.logo}
                     alt={brand.name}
+                    width={140}
+                    height={32}
                     loading="lazy"
                     decoding="async"
                     className="h-7 sm:h-8 w-auto max-w-[130px] sm:max-w-[145px] object-contain filter grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"

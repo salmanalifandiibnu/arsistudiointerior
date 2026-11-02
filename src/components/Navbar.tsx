@@ -18,9 +18,10 @@ export const Navbar: React.FC<NavbarProps> = ({ visible }) => {
   const navLinks = [
     { name: 'Portofolio', href: '#portofolio' },
     { name: 'Layanan', href: '#layanan' },
-    { name: 'Edukasi Material', href: '#material' },
+    { name: 'Material', href: '#material' },
     { name: 'Alur Kerja', href: '#alur-kerja' },
     { name: 'FAQ', href: '#faq' },
+    { name: 'Wawasan', href: '#wawasan' },
     { name: 'Kontak', href: '#kontak' },
   ];
 

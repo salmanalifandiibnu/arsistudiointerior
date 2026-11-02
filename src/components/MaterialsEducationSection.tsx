@@ -11,10 +11,10 @@ export const MaterialsEducationSection: React.FC = () => {
         <ScrollReveal>
           <div className="max-w-3xl mb-14 sm:mb-16">
             <h2 className="font-heading text-3xl sm:text-5xl font-semibold text-studio-950 leading-[1.15]">
-              Edukasi Papan Inti & Material
+              Material Andalan Kami
             </h2>
             <p className="mt-3 text-sm sm:text-base text-studio-600 font-light leading-relaxed">
-              Transparansi konstruksi fisik: Kami hanya menggunakan 3 papan inti struktural standar industri anti-lapuk dan bermitra langsung dengan produsen material orisinal bergaransi.
+              Komitmen konstruksi fisik: Kami hanya menggunakan 3 papan inti struktural standar industri anti-lapuk dan bermitra langsung dengan produsen material orisinal bergaransi.
             </p>
           </div>
         </ScrollReveal>
@@ -32,6 +32,8 @@ export const MaterialsEducationSection: React.FC = () => {
                     <img
                       src={mat.image}
                       alt={mat.name}
+                      width={800}
+                      height={500}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"

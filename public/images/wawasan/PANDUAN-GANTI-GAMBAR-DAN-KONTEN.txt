@@ -1,0 +1,63 @@
+=============================================================================
+PANDUAN MUDAH MENGGANTI GAMBAR & KONTEN WAWASAN + SHOPEE AFFILIATE (6 ARTIKEL)
+=============================================================================
+
+Seluruh file untuk bagian "Artikel & Referensi Interior" dan "Produk Shopee Affiliate"
+sudah dikelompokkan secara khusus. Format gambar menggunakan .webp berkualitas tinggi
+agar ukuran file sangat ringan (< 150 KB) dan hemat bandwidth.
+
+-----------------------------------------------------------------------------
+1. GAMBAR THUMBNAIL ARTIKEL (6 ARTIKEL AKTIF)
+-----------------------------------------------------------------------------
+Lokasi Folder:
+F:\One-Page Website\Arsi Studio Interior\public\images\wawasan\thumbnails\
+
+Daftar File (Format .webp, rasio ideal 16:9):
+- artikel-01-kamar-anak.webp                    -> Artikel 1 (Kamar Anak Tumbuh Bersama)
+- artikel-02-kenaikan-material.webp             -> Artikel 2 (Kenaikan Material & Turun Spek)
+- artikel-03-pintu-kamar.webp                   -> Artikel 3 (Plus-Minus Bahan Pintu Kamar)
+- artikel-04-desain-gratis-vs-berbayar.webp      -> Artikel 4 (Desain Gratis vs Berbayar)
+- artikel-05-kasus-kontraktor-mangkrak.webp     -> Artikel 5 (Belajar Kasus Artis Tertipu Kontraktor)
+- artikel-06-furnitur-fabrikasi-vs-custom.webp  -> Artikel 6 (Furnitur Fabrikasi vs Custom Workshop)
+
+-----------------------------------------------------------------------------
+2. FOTO PRODUK SHOPEE AFFILIATE (3 PRODUK PER ARTIKEL)
+-----------------------------------------------------------------------------
+Lokasi Folder:
+F:\One-Page Website\Arsi Studio Interior\public\images\wawasan\produk-shopee\
+
+Daftar File (Format .webp, rasio persegi/square):
+[Artikel 1 - Kamar Anak Tumbuh]
+- produk-kursi-belajar.webp             (Kartu Tengah: Kursi Belajar Ergonomis Adjustable)
+- produk-rak-mainan.webp                (Referensi Bawah 1: Rak Penyimpanan Mainan Modular)
+- produk-lampu-belajar.webp             (Referensi Bawah 2: Lampu Meja Belajar Eye-Care)
+
+[Artikel 2 - Kenaikan Material & Turun Spek]
+- produk-engsel-sendok.webp             (Kartu Tengah: Engsel Sendok Hidrolik Soft-Close)
+- produk-rel-laci.webp                  (Referensi Bawah 1: Rel Laci Double Track Ball Bearing)
+- produk-siku-ambalan.webp              (Referensi Bawah 2: Siku Penyangga Ambalan Rak)
+
+[Artikel 3 - Plus-Minus Bahan Pintu Kamar]
+- produk-smart-lock.webp                (Kartu Tengah: Smart Door Lock Fingerprint)
+- produk-penutup-celah-pintu.webp       (Referensi Bawah 1: Penutup Celah Bawah Pintu)
+- produk-penahan-pintu-magnet.webp      (Referensi Bawah 2: Penahan Pintu Magnetik)
+
+[Artikel 4 - Desain Gratis vs Berbayar]
+- produk-meteran-laser.webp             (Kartu Tengah & Bawah 1: Meteran Laser Digital Presisi)
+- produk-siku-ambalan.webp              (Referensi Bawah 2: Siku Penyangga & Sudut Dinding)
+
+[Artikel 5 - Kasus Artis Tertipu Kontraktor Mangkrak]
+- produk-cctv-proyek.webp               (Kartu Tengah & Bawah 1: CCTV Wireless Portable Proyek)
+- produk-meteran-laser.webp             (Referensi Bawah 2: Meteran Laser Digital Presisi)
+
+[Artikel 6 - Furnitur Fabrikasi Toko vs Custom Workshop]
+- produk-obeng-elektrik.webp            (Kartu Tengah: Obeng Elektrik Mini Cordless USB)
+- produk-pelindung-kaki-kursi.webp      (Referensi Bawah 1: Pelindung Kaki Kursi Silikon)
+- produk-organizer-laci.webp            (Referensi Bawah 2: Organizer Sekat Laci Modular)
+
+-----------------------------------------------------------------------------
+3. MENGGANTI TEKS ARTIKEL, JUDUL, & LINK SHOPEE AFFILIATE
+-----------------------------------------------------------------------------
+Lokasi File:
+F:\One-Page Website\Arsi Studio Interior\src\content\articles.ts
+=============================================================================
