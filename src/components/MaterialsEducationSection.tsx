@@ -1,6 +1,7 @@
 import React from 'react';
 import { SUBSTRATE_MATERIALS, type MaterialSpecimen } from '../content/materialsData';
 import { ScrollReveal } from './ScrollReveal';
+import { handleLeadConversion } from '../utils/tracking';
 
 export const MaterialsEducationSection: React.FC = () => {
   return (
@@ -27,18 +28,39 @@ export const MaterialsEducationSection: React.FC = () => {
                 className="h-full rounded-lg border border-studio-200/90 bg-white shadow-sm flex flex-col justify-between overflow-hidden hover:border-accent/80 hover:shadow-lg transition-all duration-500 ease-out group"
               >
                 <div>
-                  {/* Visual Specimen Macro Photo with Smooth Easing */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-studio-100 border-b border-studio-200/80">
-                    <img
-                      src={mat.image}
-                      alt={mat.name}
-                      width={800}
-                      height={500}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                    />
-                  </div>
+                  {/* Visual Specimen Macro Photo with Shopee Hitbox & Smooth Easing */}
+                  {mat.shopeeUrl ? (
+                    <a
+                      href={mat.shopeeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      onClick={() => handleLeadConversion(`Material Shopee Click: ${mat.name}`)}
+                      title={`Lihat Rekomendasi ${mat.name} di Shopee`}
+                      className="relative aspect-[16/10] overflow-hidden bg-studio-100 border-b border-studio-200/80 block cursor-pointer group/img"
+                    >
+                      <img
+                        src={mat.image}
+                        alt={mat.name}
+                        width={800}
+                        height={500}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      />
+                    </a>
+                  ) : (
+                    <div className="relative aspect-[16/10] overflow-hidden bg-studio-100 border-b border-studio-200/80">
+                      <img
+                        src={mat.image}
+                        alt={mat.name}
+                        width={800}
+                        height={500}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      />
+                    </div>
+                  )}
 
                 {/* Specimen Description */}
                 <div className="p-6 sm:p-7 space-y-3.5">

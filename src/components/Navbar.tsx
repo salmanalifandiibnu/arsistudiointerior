@@ -5,9 +5,10 @@ import { buildWhatsAppUrl, handleLeadConversion } from '../utils/tracking';
 
 interface NavbarProps {
   visible: boolean;
+  onNavigate?: (path: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ visible }) => {
+export const Navbar: React.FC<NavbarProps> = ({ visible, onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const waUrl = buildWhatsAppUrl(
@@ -20,8 +21,8 @@ export const Navbar: React.FC<NavbarProps> = ({ visible }) => {
     { name: 'Layanan', href: '#layanan' },
     { name: 'Material', href: '#material' },
     { name: 'Alur Kerja', href: '#alur-kerja' },
-    { name: 'FAQ', href: '#faq' },
     { name: 'Wawasan', href: '#wawasan' },
+    { name: 'Mitra', href: '/mitra', isRoute: true },
     { name: 'Kontak', href: '#kontak' },
   ];
 
@@ -46,14 +47,33 @@ export const Navbar: React.FC<NavbarProps> = ({ visible }) => {
           </a>
 
           {/* Desktop Nav Links (Visible on lg+) */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-medium uppercase tracking-wider text-studio-700 hover:text-studio-950 transition-colors relative group py-1 whitespace-nowrap"
+                onClick={(e) => {
+                  if (link.isRoute) {
+                    e.preventDefault();
+                    if (onNavigate) {
+                      onNavigate(link.href);
+                    } else {
+                      window.location.href = link.href;
+                    }
+                  }
+                }}
+                className={`text-xs font-medium uppercase tracking-wider transition-colors relative group py-1 whitespace-nowrap ${
+                  link.isRoute
+                    ? 'text-studio-800 hover:text-studio-950 font-semibold'
+                    : 'text-studio-700 hover:text-studio-950'
+                }`}
               >
-                {link.name}
+                <span>{link.name}</span>
+                {link.isRoute && (
+                  <span className="ml-1 text-[9px] font-mono px-1.5 py-0.5 border border-studio-800 text-studio-900 bg-studio-100/60 group-hover:bg-studio-950 group-hover:text-white group-hover:border-studio-950 rounded-none align-middle font-semibold transition-all">
+                    B2B
+                  </span>
+                )}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
@@ -107,10 +127,29 @@ export const Navbar: React.FC<NavbarProps> = ({ visible }) => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-sm font-semibold uppercase tracking-wider text-studio-800 hover:text-accent py-1.5 border-b border-studio-200/60 transition-colors"
+                onClick={(e) => {
+                  setMobileOpen(false);
+                  if (link.isRoute) {
+                    e.preventDefault();
+                    if (onNavigate) {
+                      onNavigate(link.href);
+                    } else {
+                      window.location.href = link.href;
+                    }
+                  }
+                }}
+                className={`text-sm font-semibold uppercase tracking-wider py-1.5 border-b border-studio-200/60 transition-colors flex items-center justify-between ${
+                  link.isRoute
+                    ? 'text-studio-900 hover:text-accent'
+                    : 'text-studio-800 hover:text-accent'
+                }`}
               >
-                {link.name}
+                <span>{link.name}</span>
+                {link.isRoute && (
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 border border-studio-800 text-studio-900 bg-studio-100 font-semibold">
+                    B2B
+                  </span>
+                )}
               </a>
             ))}
           </div>

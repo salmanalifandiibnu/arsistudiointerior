@@ -8,6 +8,7 @@ export interface MaterialSpecimen {
   composition: string;
   workshopReality: string;
   recommendedUse: string;
+  shopeeUrl?: string;
 }
 
 export interface BrandPartner {
@@ -28,7 +29,8 @@ export const SUBSTRATE_MATERIALS: MaterialSpecimen[] = [
     image: "/images/materials/papan-inti/plywood.jpg",
     composition: "Lapisan lembaran kayu keras meranti yang ditumpuk bersilangan serat 90° dan direkatkan dengan resin tekanan tinggi.",
     workshopReality: "Kerapatan serat padat dan cengkeraman sekrup kokoh. Tahan beban berat dan tidak mudah lentur untuk struktur utama.",
-    recommendedUse: "Rangka bodi kitchen set, kabinet lemari pakaian, dan ambalan rak gantung."
+    recommendedUse: "Rangka bodi kitchen set, kabinet lemari pakaian, dan ambalan rak gantung.",
+    shopeeUrl: "https://s.shopee.co.id/9zz0YY7835"
   },
   {
     id: "blockboard-solid",
@@ -39,7 +41,8 @@ export const SUBSTRATE_MATERIALS: MaterialSpecimen[] = [
     image: "/images/materials/papan-inti/blockboard.jpg",
     composition: "Balok-balok kayu solid lurus (falcata kering oven) yang dikunci oleh lapisan veneer ganda di kedua sisinya.",
     workshopReality: "Lebih ringan dengan kestabilan dimensi bentang panjang vertikal yang superior. Efektif mencegah risiko pintu melengkung.",
-    recommendedUse: "Pintu lemari pakaian setinggi plafon (> 2.4 meter) dan daun pintu geser (sliding door)."
+    recommendedUse: "Pintu lemari pakaian setinggi plafon (> 2.4 meter) dan daun pintu geser (sliding door).",
+    shopeeUrl: "https://s.shopee.co.id/906TMv2B7p"
   },
   {
     id: "pvc-foam-board",
@@ -50,7 +53,8 @@ export const SUBSTRATE_MATERIALS: MaterialSpecimen[] = [
     image: "/images/materials/papan-inti/pvc-board.jpg",
     composition: "Material busa polimer polivinil klorida sintetis murni dengan struktur sel tertutup tanpa campuran serbuk kayu.",
     workshopReality: "100% kedap air dan anti-rayap. Tidak akan lapuk atau mengembang meski terendam air kebocoran pipa.",
-    recommendedUse: "Kabinet bawah sink cuci piring (kitchen sink) dan area lembap mesin cuci laundry."
+    recommendedUse: "Kabinet bawah sink cuci piring (kitchen sink) dan area lembap mesin cuci laundry.",
+    shopeeUrl: "https://s.shopee.co.id/2qVq1g3hta"
   }
 ];
 

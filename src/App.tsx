@@ -3,6 +3,7 @@ import { useRouter } from './utils/router';
 import { ARTICLES } from './content/articles';
 import { InsightsSection } from './components/InsightsSection';
 import { ArticlePage } from './components/ArticlePage';
+import { PartnerPortalPage } from './components/PartnerPortalPage';
 import { HeroScrollytelling } from './components/HeroScrollytelling';
 import { HeroMobileVideo } from './components/HeroMobileVideo';
 import { Navbar } from './components/Navbar';
@@ -12,10 +13,9 @@ import { PortfolioSection } from './components/PortfolioSection';
 import { PostPortfolioCTA } from './components/PostPortfolioCTA';
 import { WorkflowSection } from './components/WorkflowSection';
 import { MaterialsEducationSection } from './components/MaterialsEducationSection';
-import { FAQSection } from './components/FAQSection';
 import { BrandPartnersSection } from './components/BrandPartnersSection';
 import { ContactFooter } from './components/ContactFooter';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { StudioAssistantBot } from './components/StudioAssistantBot';
 import { BackToTop } from './components/BackToTop';
 import { CookieConsent } from './components/CookieConsent';
 
@@ -51,18 +51,22 @@ export function App() {
     ? ARTICLES.find((a) => a.slug === activeArticleSlug)
     : null;
 
+  const isMitraPage = path === '/mitra' || path === '/mitra/';
+
   // Sync document title dynamically
   useEffect(() => {
     if (currentArticle) {
       document.title = `${currentArticle.title} — Arsi Studio Interior`;
+    } else if (isMitraPage) {
+      document.title = 'Standar Kurasi & Akreditasi Mitra Material — Workshop Arsi';
     } else {
       document.title = 'Arsi Studio Interior — Design & Build Custom Interior Specialist Bandung';
     }
-  }, [currentArticle]);
+  }, [currentArticle, isMitraPage]);
 
   // Handle direct anchor navigation (e.g. /#wawasan from ArticlePage or direct link)
   useEffect(() => {
-    if (!currentArticle) {
+    if (!currentArticle && !isMitraPage) {
       const hash = window.location.hash;
       if (hash) {
         const scrollToTarget = () => {
@@ -103,11 +107,21 @@ export function App() {
     );
   }
 
+  // If visiting B2B vendor & supplier filtration portal (/mitra)
+  if (isMitraPage) {
+    return (
+      <>
+        <PartnerPortalPage onNavigate={navigate} />
+        <CookieConsent />
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-studio-50 text-studio-900 flex flex-col font-sans selection:bg-studio-900 selection:text-studio-50">
       
       {/* Dynamic Slide-Down Navbar */}
-      <Navbar visible={isPastHero} />
+      <Navbar visible={isPastHero} onNavigate={navigate} />
 
       {/* Adaptive Hero Experience:
           - Mobile (< 768px): Lightweight 100dvh Video Background (Zero sequence frames downloaded)
@@ -138,24 +152,21 @@ export function App() {
         {/* 6. Transparent 4-Step Working Flow */}
         <WorkflowSection />
 
-        {/* 7. Frequently Asked Questions (Objection Handling & Transparency) */}
-        <FAQSection />
-
-        {/* 8. Wawasan Lapangan & Integritas Material (6 Artikel dengan halaman mandiri) */}
+        {/* 7. Wawasan Lapangan & Integritas Material (6 Artikel dengan halaman mandiri) */}
         <InsightsSection onNavigate={navigate} />
 
-        {/* 9. Official Brand Partners Showcase (Swapped to Pre-Footer) */}
+        {/* 8. Official Brand Partners Showcase (Swapped to Pre-Footer) */}
         <BrandPartnersSection />
       </main>
 
       {/* Studio Location & Footer */}
-      <ContactFooter />
+      <ContactFooter onNavigate={navigate} />
 
       {/* Floating Action Controls */}
       {isPastHero && (
         <>
           <BackToTop />
-          <FloatingWhatsApp />
+          <StudioAssistantBot />
         </>
       )}
 

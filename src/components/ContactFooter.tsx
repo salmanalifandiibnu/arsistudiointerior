@@ -4,7 +4,11 @@ import { STUDIO_INFO } from '../content/studioInfo';
 import { ScrollReveal } from './ScrollReveal';
 import { buildWhatsAppUrl, handleLeadConversion } from '../utils/tracking';
 
-export const ContactFooter: React.FC = () => {
+interface ContactFooterProps {
+  onNavigate?: (path: string) => void;
+}
+
+export const ContactFooter: React.FC<ContactFooterProps> = ({ onNavigate }) => {
   const footerWaUrl = buildWhatsAppUrl(
     STUDIO_INFO.whatsappNumber,
     "Halo Arsi Studio Interior, saya ingin berkonsultasi mengenai rencana interior hunian saya di Bandung."
@@ -108,6 +112,18 @@ export const ContactFooter: React.FC = () => {
                 <span className="text-[10px] text-studio-500 uppercase block font-mono">WhatsApp & Telepon</span>
                 <span className="text-white font-mono text-sm font-semibold">{STUDIO_INFO.phone}</span>
               </a>
+
+              <button
+                type="button"
+                onClick={() => onNavigate ? onNavigate('/mitra') : (window.location.href = '/mitra')}
+                className="w-full text-left block p-3 border border-studio-800 hover:border-accent/60 transition-colors bg-studio-900/40 group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] text-accent-muted uppercase block font-mono">B2B Material Supplier</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-studio-500 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </div>
+                <span className="text-studio-200 font-mono text-xs block mt-0.5">Portal Vendor & Mitra Material</span>
+              </button>
             </div>
           </div>
 
@@ -117,7 +133,14 @@ export const ContactFooter: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-studio-500 gap-4 font-mono text-[11px]">
           <p>© {new Date().getFullYear()} {STUDIO_INFO.name}. Hak cipta dilindungi.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => onNavigate ? onNavigate('/mitra') : (window.location.href = '/mitra')}
+              className="text-studio-400 hover:text-accent transition-colors underline underline-offset-4"
+            >
+              Kemitraan Vendor Material ↗
+            </button>
+            <span>•</span>
             <span>Sukamiskin, Arcamanik</span>
             <span>•</span>
             <span className="text-accent-muted">Bandung, Jawa Barat</span>
