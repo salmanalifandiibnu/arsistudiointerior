@@ -21,9 +21,8 @@ export const Navbar: React.FC<NavbarProps> = ({ visible, onNavigate }) => {
     { name: 'Layanan', href: '#layanan' },
     { name: 'Material', href: '#material' },
     { name: 'Alur Kerja', href: '#alur-kerja' },
-    { name: 'Wawasan', href: '#wawasan' },
+    { name: 'Artikel', href: '#wawasan' },
     { name: 'Mitra', href: '/mitra', isRoute: true },
-    { name: 'Kontak', href: '#kontak' },
   ];
 
   return (
