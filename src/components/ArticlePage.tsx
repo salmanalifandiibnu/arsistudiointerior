@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
 import { Article, ARTICLES, InlineHighlight } from '../content/articles';
 import { buildWhatsAppUrl } from '../utils/tracking';
 import { STUDIO_INFO } from '../content/studioInfo';
+import { ArticleLeadModal } from './ArticleLeadModal';
 
 interface ArticlePageProps {
   article: Article;
@@ -451,6 +452,9 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({ article, onNavigate })
           </div>
         </section>
       )}
+
+      {/* 10-Second Lead Capture Floating Sheet (Clean Architectural Version) */}
+      <ArticleLeadModal articleTitle={article.title} articleSlug={article.slug} />
 
     </div>
   );
