@@ -1,5 +1,9 @@
 export const STUDIO_INFO = {
   name: "Arsi Studio Interior",
+  foundedYear: "2021",
+  serviceArea: "Kota Bandung & Jabodetabek",
+  completedProjects: "70+",
+  hardwareWarranty: "180 Hari",
   tagline: "Design & Build Atelier • Bandung",
   subtagline: "Studio arsitektur interior dan bengkel fabrikasi mandiri di Arcamanik, Bandung. Kami merancang denah, memotong kayu, dan merakit furniture custom dengan presisi ukuran lapangan.",
   city: "Kota Bandung",
@@ -10,5 +14,5 @@ export const STUDIO_INFO = {
   hours: "Senin – Sabtu (09.00 – 17.00 WIB)",
   instagram: "@arsistudio.interior",
   email: "studio@arsistudio.id",
-  whatsappDefaultMessage: encodeURIComponent("Halo Arsi Studio Interior, saya ingin mendiskusikan denah dan kebutuhan interior hunian saya di Bandung.")
+  whatsappDefaultMessage: encodeURIComponent("Halo Arsi Studio Interior, saya ingin mendiskusikan denah dan kebutuhan interior hunian saya.")
 };

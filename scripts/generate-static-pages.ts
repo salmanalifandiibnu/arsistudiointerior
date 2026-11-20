@@ -113,6 +113,26 @@ function generateStaticPages() {
   fs.writeFileSync(path.join(mitraDir, 'index.html'), mitraHtml, 'utf-8');
   console.log('[OG Generator] Generated: dist/mitra/index.html');
 
+  // 3. Generate Static HTML for Company Profile (/profil)
+  const profilDir = path.join(DIST_DIR, 'profil');
+  fs.mkdirSync(profilDir, { recursive: true });
+
+  const profilTitle = 'Profil Perusahaan — Arsi Studio Interior';
+  const profilDesc = 'Profil resmi Arsi Studio Interior sejak 2021. Spesialis design & build custom interior untuk Bandung & Jabodetabek dengan 70+ proyek dan garansi hardware 180 hari.';
+  const profilUrl = `${BASE_URL}/profil`;
+
+  let profilHtml = templateHtml;
+  profilHtml = profilHtml.replace(/<title>.*?<\/title>/, `<title>${profilTitle}</title>`);
+  profilHtml = profilHtml.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${profilDesc}" />`);
+  profilHtml = profilHtml.replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${profilUrl}" />`);
+  profilHtml = profilHtml.replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${profilTitle}" />`);
+  profilHtml = profilHtml.replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${profilDesc}" />`);
+  profilHtml = profilHtml.replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${profilTitle}" />`);
+  profilHtml = profilHtml.replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${profilDesc}" />`);
+
+  fs.writeFileSync(path.join(profilDir, 'index.html'), profilHtml, 'utf-8');
+  console.log('[OG Generator] Generated: dist/profil/index.html');
+
   console.log('\n[OG Generator] Successfully generated static Open Graph pages for all routes!');
 }
 

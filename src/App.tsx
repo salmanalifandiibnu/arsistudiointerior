@@ -4,6 +4,7 @@ import { ARTICLES } from './content/articles';
 import { InsightsSection } from './components/InsightsSection';
 import { ArticlePage } from './components/ArticlePage';
 import { PartnerPortalPage } from './components/PartnerPortalPage';
+import { CompanyProfilePage } from './components/CompanyProfilePage';
 import { HeroScrollytelling } from './components/HeroScrollytelling';
 import { HeroMobileVideo } from './components/HeroMobileVideo';
 import { Navbar } from './components/Navbar';
@@ -52,6 +53,7 @@ export function App() {
     : null;
 
   const isMitraPage = path === '/mitra' || path === '/mitra/';
+  const isProfilPage = path === '/profil' || path === '/profil/';
 
   // Sync document title dynamically
   useEffect(() => {
@@ -59,14 +61,16 @@ export function App() {
       document.title = `${currentArticle.title} — Arsi Studio Interior`;
     } else if (isMitraPage) {
       document.title = 'Standar Kurasi & Akreditasi Mitra Material — Workshop Arsi';
+    } else if (isProfilPage) {
+      document.title = 'Profil Perusahaan — Arsi Studio Interior';
     } else {
       document.title = 'Arsi Studio Interior — Design & Build Custom Interior Specialist Bandung';
     }
-  }, [currentArticle, isMitraPage]);
+  }, [currentArticle, isMitraPage, isProfilPage]);
 
   // Handle direct anchor navigation (e.g. /#wawasan from ArticlePage or direct link)
   useEffect(() => {
-    if (!currentArticle && !isMitraPage) {
+    if (!currentArticle && !isMitraPage && !isProfilPage) {
       const hash = window.location.hash;
       if (hash) {
         const scrollToTarget = () => {
@@ -112,6 +116,16 @@ export function App() {
     return (
       <>
         <PartnerPortalPage onNavigate={navigate} />
+        <CookieConsent />
+      </>
+    );
+  }
+
+  // If visiting Company Profile page (/profil)
+  if (isProfilPage) {
+    return (
+      <>
+        <CompanyProfilePage onNavigate={navigate} />
         <CookieConsent />
       </>
     );

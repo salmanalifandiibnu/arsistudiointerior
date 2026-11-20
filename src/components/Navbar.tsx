@@ -16,13 +16,14 @@ export const Navbar: React.FC<NavbarProps> = ({ visible, onNavigate }) => {
     "Halo Arsi Studio Interior, saya ingin berkonsultasi mengenai kebutuhan custom interior hunian saya di Bandung."
   );
 
-  const navLinks = [
+  const navLinks: { name: string; href: string; isRoute?: boolean; badge?: string }[] = [
     { name: 'Portofolio', href: '#portofolio' },
     { name: 'Layanan', href: '#layanan' },
     { name: 'Material', href: '#material' },
     { name: 'Alur Kerja', href: '#alur-kerja' },
     { name: 'Artikel', href: '#wawasan' },
-    { name: 'Mitra', href: '/mitra', isRoute: true },
+    { name: 'Profil', href: '/profil', isRoute: true },
+    { name: 'Mitra', href: '/mitra', isRoute: true, badge: 'B2B' },
   ];
 
   return (
@@ -68,9 +69,9 @@ export const Navbar: React.FC<NavbarProps> = ({ visible, onNavigate }) => {
                 }`}
               >
                 <span>{link.name}</span>
-                {link.isRoute && (
+                {link.badge && (
                   <span className="ml-1 text-[9px] font-mono px-1.5 py-0.5 border border-studio-800 text-studio-900 bg-studio-100/60 group-hover:bg-studio-950 group-hover:text-white group-hover:border-studio-950 rounded-none align-middle font-semibold transition-all">
-                    B2B
+                    {link.badge}
                   </span>
                 )}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
@@ -144,9 +145,9 @@ export const Navbar: React.FC<NavbarProps> = ({ visible, onNavigate }) => {
                 }`}
               >
                 <span>{link.name}</span>
-                {link.isRoute && (
+                {link.badge && (
                   <span className="text-[10px] font-mono px-1.5 py-0.5 border border-studio-800 text-studio-900 bg-studio-100 font-semibold">
-                    B2B
+                    {link.badge}
                   </span>
                 )}
               </a>

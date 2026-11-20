@@ -135,6 +135,13 @@ export const ContactFooter: React.FC<ContactFooterProps> = ({ onNavigate }) => {
           <p>© {new Date().getFullYear()} {STUDIO_INFO.name}. Hak cipta dilindungi.</p>
           <div className="flex flex-wrap items-center gap-4">
             <button
+              onClick={() => onNavigate ? onNavigate('/profil') : (window.location.href = '/profil')}
+              className="text-studio-400 hover:text-accent transition-colors underline underline-offset-4"
+            >
+              Profil Perusahaan ↗
+            </button>
+            <span>•</span>
+            <button
               onClick={() => onNavigate ? onNavigate('/mitra') : (window.location.href = '/mitra')}
               className="text-studio-400 hover:text-accent transition-colors underline underline-offset-4"
             >

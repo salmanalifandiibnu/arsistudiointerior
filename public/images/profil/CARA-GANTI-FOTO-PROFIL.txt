@@ -1,0 +1,20 @@
+=================================================================
+PANDUAN MENGGANTI FOTO PROFIL FOUNDER / PRINCIPAL — ARSI STUDIO
+=================================================================
+
+1. Siapkan foto diri Anda dengan kualitas tajam dan pencahayaan baik.
+   - Rasio disarankan: Portrait 4:5 (misal 800x1000 px) atau Kotak 1:1 (misal 800x800 px).
+   - Ukuran file disarankan: Maksimal 500 KB agar halaman dimuat cepat.
+
+2. Ubah nama file foto tersebut persis menjadi:
+   founder.jpg
+
+3. Simpan / replace file tersebut ke dalam folder ini:
+   public/images/profil/founder.jpg
+
+4. Setelah file `founder.jpg` diletakkan di folder ini, foto akan
+   otomatis muncul di halaman Company Profile (/profil).
+
+Catatan: Jika file `founder.jpg` belum dimasukkan, halaman `/profil`
+tetap tampil rapi dengan bingkai placeholder arsitektural.
+=================================================================
